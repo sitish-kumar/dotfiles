@@ -32,8 +32,29 @@ git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si  # 
 git clone --recurse-submodules https://github.com/sitish-kumar/dotfiles.git ~/Projects/dotfiles
 cd ~/Projects/dotfiles
 ./install.sh          # packages + configs + plugins/fork  (see README.md)
-./system/system-setup.sh   # system tweaks (network/keyring/etc) — idempotent
+./install.sh --dev    # ALSO install the opt-in dev stack (bootstrap/dev-packages.txt)
+./system/system-setup.sh   # system tweaks (network/keyring/face-unlock/backup) — idempotent
 ```
+
+## 2b. Face unlock (howdy) — per-machine enrollment
+
+`howdy-git` + the config are installed by `install.sh`/`system-setup.sh`, and
+`pam_howdy` is wired into `/etc/pam.d/hyprlock` (it's `sufficient`, so a failed
+match just falls back to the password — it can't lock you out). Two machine-specific
+steps remain because face data and the camera node don't transfer:
+
+```bash
+ls /dev/video*                       # find the IR camera; try candidates
+sudo nano /etc/howdy/config.ini      # set [video] device_path to it
+sudo howdy add                       # enroll your face (re-do per machine)
+```
+
+## 2c. Backups (timeshift)
+
+`timeshift` is installed and a schedule template seeded to `/etc/timeshift/timeshift.json`
+(only if unconfigured). Open **timeshift** once and pick the backup device — it writes
+the machine-specific UUID, after which snapshots run on the daily/weekly/monthly
+schedule via cron.
 
 ## 3. Secret storage — PAM keyring auto-unlock (manual, careful)
 
