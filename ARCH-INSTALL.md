@@ -23,8 +23,11 @@ Reboot into the new system, log in on a TTY, connect (`nmtui`), then:
 
 ```bash
 sudo pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si  # AUR helper
+git clone https://aur.archlinux.org/yay-bin.git && cd yay-bin && makepkg -si  # AUR helper (optional)
 ```
+
+> `yay` is **optional** here — if it's missing, `install.sh` bootstraps `yay-bin`
+> for you. You only strictly need `git base-devel` to clone the repo and build it.
 
 ## 2. This repo
 
