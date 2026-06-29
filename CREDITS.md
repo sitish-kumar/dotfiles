@@ -19,8 +19,6 @@ released under the **GPL-3.0** as well (see [LICENSE](LICENSE)).
 - **[Raymond Bian (raybbian) / hyprtasking](https://github.com/raybbian/hyprtasking)** — **BSD-3-Clause**.
   `pkgs/hyprtasking` is a fork; the original copyright (© 2024 Raymond Bian) is retained in
   that submodule's `LICENSE`.
-- **[yayuuu / hyprland-scroll-overview](https://github.com/yayuuu/hyprland-scroll-overview)** —
-  the "scrolloverview" alternative overview, installed via `hyprpm`.
 
 ## Tools & themes (installed as packages, not vendored)
 
